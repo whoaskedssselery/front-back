@@ -1,0 +1,37 @@
+.news {
+  padding: 20px;
+
+  &-info {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border-left: 4px solid #667eea;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateX(5px);
+    }
+
+    &__title {
+      font-size: 20px;
+      color: #2c3e50;
+      margin: 0 0 10px 0;
+      font-weight: 600;
+    }
+
+    &__description {
+      color: #7f8c8d;
+      line-height: 1.6;
+      margin: 0 0 10px 0;
+    }
+
+    &__data {
+      color: #7f8c8d;
+      font-style: italic;
+      margin: 0;
+      text-align: right;
+    }
+  }
+}
