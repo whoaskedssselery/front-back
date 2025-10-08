@@ -51,7 +51,11 @@ body {
 .content {
   padding: 20px;
   max-width: 900px;
+  width: 100%;
   margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .content__title {
   font-size: 32px;
@@ -60,7 +64,7 @@ body {
   display: flex;
   justify-content: center;
   margin: 0;
-  margin-block: 10px;
+  margin-block: 12px;
 }
 .content__header {
   text-align: center;
@@ -147,6 +151,7 @@ body {
 
 .goods {
   display: flex;
+  justify-content: center;
   -moz-column-gap: 40px;
        column-gap: 40px;
 }
@@ -219,6 +224,8 @@ body {
   border-left: 5px solid #667eea;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
+  max-width: 400px;
+  width: 100%;
 }
 .contact-block:last-child {
   margin-bottom: 0;
@@ -226,7 +233,7 @@ body {
 .contact-block__title {
   font-size: 18px;
   color: #2c3e50;
-  margin-bottom: 10px;
+  margin-block: 10px;
   font-weight: 500;
 }
 .contact-block__item {
@@ -259,6 +266,7 @@ body {
 .content__contact {
   display: flex;
   flex-direction: column;
+  align-items: center;
   row-gap: 5px;
 }
 

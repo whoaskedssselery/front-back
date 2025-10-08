@@ -1,7 +1,12 @@
 .content {
   padding: 20px;
   max-width: 900px;
+  width: 100%;
   margin: 10px auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
    &__title {
       font-size: 32px;
@@ -11,7 +16,7 @@
       display: flex;
       justify-content: center;
       margin: 0;
-      margin-block:  10px;
+      margin-block:  12px;
     }
 
   &__header {
