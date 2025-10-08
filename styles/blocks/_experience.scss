@@ -1,0 +1,35 @@
+.experience {
+   &__list {
+display: flex; /* расположить элементы в линию */
+  flex-wrap: wrap; /* переносить, если не помещаются */
+  gap: 20px; /* промежутки между элементами, по желанию */
+  margin: 0 auto; /* центрировать по странице, если нужно */
+
+  list-style: none;
+   }
+
+   &__item {
+      flex: 1 1 30%; /* растягиваются, занимают равную ширину, по умолчанию примерно 30% */
+      min-width: 250px; /* минимальная ширина, чтобы не сжались слишком сильно */
+      background-color: #F5F5F5;
+      border-radius: 12px;
+   }
+
+   &-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &__title {
+         margin-block: 10px;
+      }
+
+      &__desc {
+         text-align: center;
+         padding-inline: 20px;
+
+         margin-top: 0;
+      }
+   }
+}

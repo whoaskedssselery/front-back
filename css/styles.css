@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
@@ -100,13 +101,6 @@ body {
 .content__skills {
   margin-top: 30px;
 }
-.content__skills .content__subtitle {
-  font-size: 28px;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 20px;
-  font-weight: 300;
-}
 .content__skills .skill {
   display: flex;
   align-items: center;
@@ -148,6 +142,14 @@ body {
 .catalog {
   display: flex;
   justify-content: center;
+}
+
+.content__subtitle {
+  font-size: 28px;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 300;
 }
 
 .goods {
@@ -265,4 +267,32 @@ body {
   display: flex;
   flex-direction: column;
   row-gap: 5px;
+}
+
+.experience__list {
+  display: flex; /* расположить элементы в линию */
+  flex-wrap: wrap; /* переносить, если не помещаются */
+  gap: 20px; /* промежутки между элементами, по желанию */
+  margin: 0 auto; /* центрировать по странице, если нужно */
+  list-style: none;
+}
+.experience__item {
+  flex: 1 1 30%; /* растягиваются, занимают равную ширину, по умолчанию примерно 30% */
+  min-width: 250px; /* минимальная ширина, чтобы не сжались слишком сильно */
+  background-color: #F5F5F5;
+  border-radius: 12px;
+}
+.experience-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.experience-card__title {
+  margin-block: 10px;
+}
+.experience-card__desc {
+  text-align: center;
+  padding-inline: 20px;
+  margin-top: 0;
 }/*# sourceMappingURL=styles.css.map */

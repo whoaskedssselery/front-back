@@ -52,14 +52,6 @@
   &__skills {
     margin-top: 30px;
 
-    .content__subtitle {
-      font-size: 28px;
-      color: #2c3e50;
-      text-align: center;
-      margin-bottom: 20px;
-      font-weight: 300;
-    }
-
     .skill {
       display: flex;
       align-items: center;
@@ -105,3 +97,11 @@
    display: flex;
    justify-content: center;
 }
+
+.content__subtitle {
+      font-size: 28px;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
