@@ -1,6 +1,8 @@
+@use "../root";
+
 .header {
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--accent-color) 0%, #34495e 100%);
+  color: var(--color-light);
   padding: 20px 0;
 
   &__menu {
@@ -17,7 +19,7 @@
   }
 
   &__link {
-    color: white;
+    color: var(--color-light);
     text-decoration: none;
     padding: 12px 25px;
     border-radius: 25px;

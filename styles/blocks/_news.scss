@@ -1,13 +1,15 @@
+@use "../root";
+
 .news {
   padding: 20px;
 
   &-info {
-    background: white;
+    background: var(--color-light);
     padding: 25px;
     margin: 20px 0;
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    border-left: 4px solid #667eea;
+    border-left: 4px solid var(--shadow-color);
     transition: transform 0.3s ease;
 
     &:hover {
@@ -16,7 +18,7 @@
 
     &__title {
       font-size: 20px;
-      color: #2c3e50;
+      color: var(--accent-color);
       margin: 0 0 10px 0;
       font-weight: 600;
     }

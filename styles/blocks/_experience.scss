@@ -1,3 +1,5 @@
+@use "../root";
+
 .experience {
    &__list {
 display: flex; /* расположить элементы в линию */
@@ -11,7 +13,7 @@ display: flex; /* расположить элементы в линию */
    &__item {
       flex: 1 1 30%; /* растягиваются, занимают равную ширину, по умолчанию примерно 30% */
       min-width: 250px; /* минимальная ширина, чтобы не сжались слишком сильно */
-      background-color: #F5F5F5;
+      background-color: var(--section-color);
       border-radius: 12px;
    }
 
