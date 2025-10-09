@@ -63,7 +63,7 @@ body {
 
 .content {
   padding: 20px;
-  max-width: 900px;
+  max-width: 1024px;
   width: 100%;
   margin: 10px auto;
   display: flex;
@@ -309,4 +309,27 @@ body {
   text-align: center;
   padding-inline: 20px;
   margin-top: 0;
+}
+
+.practice {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  padding-inline: 0;
+  margin-top: 10px;
+}
+.practice-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: var(--section-raduis);
+  background-color: var(--section-color);
+}
+.practice-block__link {
+  color: var(--accent-color);
+}
+.practice-block__desc {
+  text-align: center;
+  padding-inline: 40px;
 }/*# sourceMappingURL=styles.css.map */
