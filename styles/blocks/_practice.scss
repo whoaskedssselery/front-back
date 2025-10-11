@@ -1,4 +1,5 @@
 @use "../root";
+@use "../media";
 
 .practice {
    display: grid;
@@ -8,12 +9,21 @@
    padding-inline: 0;
    margin-top: 10px;
 
+   @include media.bugfix {
+         display: flex;
+         flex-direction: column;
+         row-gap: 20px;
+
+   }
+
    &-block {
       display: flex;
       flex-direction: column;
       align-items: center;
       border-radius: var(--section-raduis);
       background-color:  var(--section-color);
+
+      margin-inline: 10px;
 
       &__link {
             color: var(--accent-color);

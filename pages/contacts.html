@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
    <title>SSSELERY | Контакты</title>
    <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
    <header class="header">
       <ul class="header__menu">
@@ -21,10 +23,11 @@
       <header class="content__header">
          <h2 class="content__title">Контакты</h2>
       </header>
-      <div class="content__contact">
+      <section class="content__contact">
          <div class="contact-block">
             <h3 class="contact-block__title">Электронная почта</h3>
-            <p class="contact-block__item"><a href="mailto:ssseleryit@gmail.com" class="contact-block__link">ssseleryit@gmail.com</a></p>
+            <p class="contact-block__item"><a href="mailto:ssseleryit@gmail.com"
+                  class="contact-block__link">ssseleryit@gmail.com</a></p>
          </div>
          <div class="contact-block">
             <h3 class="contact-block__title">Адрес</h3>
@@ -34,12 +37,62 @@
             <h3 class="contact-block__title">Телефон</h3>
             <a href="tel:+79005399054" class="contact-block__button">Позвони мне (а может и не мне)</a>
          </div>
+         <div class="modal-form">
+            <button id="openDialog" type="button" class="button">Написать нам</button>
+            <!-- Модалка с формой -->
+            <dialog id="contactDialog" aria-labelledby="dialogTitle" class="dialog">
+               <h2 id="dialogTitle" class="dialog__title">Обратная связь</h2>
+               <form id="contactForm" method="dialog" novalidate>
+                  <!-- Имя -->
+                  <label for="name">Имя</label>
+                  <input id="name" name="name" type="text" required minlength="2" autocomplete="given-name">
+                  <!-- Почта -->
+                  <label for="email">E-mail</label>
+                  <input id="email" name="email" type="email" required autocomplete="email">
+                  <!-- Телефон -->
+                  <label for="phone">Телефон</label>
+                  <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+                     aria-describedby="phoneHelp" placeholder="" required pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$">
+                  <small id="phoneHelp">Формат: +7 (900) 000-00-00</small>
+                  <!-- Дата -->
+                  <label for="date">Дата</label>
+                  <input id="date" name="date" type="date">
+                  <!-- Тема -->
+                  <label for="topic">Тема</label>
+                  <select id="topic" name="topic" required>
+                     <option value="" disabled selected>Выберите тему</option>
+                     <option value="question">Вопрос</option>
+                     <option value="order">Заказ</option>
+                  </select>
+                  <!-- Сообщение -->
+                  <label for="message">Сообщение</label>
+                  <textarea id="message" name="message" rows="4" required></textarea>
+                  <!-- Действия -->
+                  <div class="form-actions">
+                     <button type="button" id="closeDialog" class="button">Закрыть</button>
+                     <button type="submit" class="button">Отправить</button>
+                  </div>
+               </form>
+            </dialog>
+         </div>
+      </section>
+
+      <div id="successAlert" class="alert hidden">
+            <p>Ваше сообщение успешно отправлено!</p>
       </div>
    </main>
 
+
+
    <footer class="footer">
       <p class="footer__text">© 2025-2026 гг. Все права защищены</p>
-      <p class="footer__text">Ссылки на материалы: <a href="https://github.com/astafiev-rustam/frontend-and-backend-development/tree/practice-1-8" class="footer__link">GitHub</a>, <a href="https://htmlacademy.ru/courses/299" class="footer__link">HTML Academy</a></p>
+      <p class="footer__text">Ссылки на материалы: <a
+            href="https://github.com/astafiev-rustam/frontend-and-backend-development/tree/practice-1-8"
+            class="footer__link">GitHub</a>, <a href="https://htmlacademy.ru/courses/299" class="footer__link">HTML
+            Academy</a></p>
    </footer>
+
+   <script src="../js/modal.js" defer></script>
 </body>
+
 </html>

@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
@@ -16,10 +15,101 @@ body {
   --section-color: #F5F5F5;
   --accent-color: #2c3e50;
   --section-raduis: 12px;
-  --desktop-width: 1920px;
-  --tablet-width: 1240px;
-  --mobile-width: 767px;
-  --min-width: 400px;
+}
+
+.dialog {
+  padding: 1.25rem;
+  border: none;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+}
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+.dialog__title {
+  margin-inline: auto;
+  margin-block: 10px;
+}
+
+input, textarea, button {
+  width: 100%;
+  max-width: 472px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #c8c8c8;
+  border-radius: 8px;
+  background: var(--color-light);
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+:where(input, select, textarea, button):focus-visible {
+  outline: 2px solid #0a84ff;
+  outline-offset: 2px;
+}
+
+.modal-form {
+  margin-top: 25px;
+}
+
+select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #c8c8c8;
+  border-radius: 8px;
+  background: var(--color-light);
+}
+
+.alert {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.button {
+  background-color: var(--shadow-color);
+  height: 42px;
+  max-width: 250px;
+  width: 100%;
+  color: var(--color-light);
+  cursor: pointer;
+  border: none;
+  border-radius: var(--section-raduis);
+  font-size: 16px;
+  transition-duration: all 0.4s ease;
+}
+.button:hover {
+  filter: brightness(0.95);
+  transform: translateY(-2px);
 }
 
 .header {
@@ -27,13 +117,24 @@ body {
   color: var(--color-light);
   padding: 20px 0;
 }
+@media (max-width: 767px) {
+  .header {
+    padding-block: 15px;
+  }
+}
 .header__menu {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
-  gap: 25px;
+  gap: 40px;
+}
+@media (max-width: 767px) {
+  .header__menu {
+    gap: 5px;
+    justify-content: space-between;
+  }
 }
 .header__item {
   margin: 0;
@@ -41,7 +142,7 @@ body {
 .header__link {
   color: var(--color-light);
   text-decoration: none;
-  padding: 12px 25px;
+  padding: 12px;
   border-radius: 25px;
   transition: all 0.3s ease;
   font-weight: 500;
@@ -63,12 +164,18 @@ body {
 
 .content {
   padding: 20px;
-  max-width: 1024px;
-  width: 100%;
   margin: 10px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .content {
+    max-width: 500px;
+    width: 100%;
+    padding: 0;
+  }
 }
 .content__title {
   font-size: 32px;
@@ -101,6 +208,23 @@ body {
   row-gap: 10px;
   padding-block: 15px;
   align-items: center;
+  max-width: 1024px;
+  width: 100%;
+}
+@media (max-width: 1240px) {
+  .content__description {
+    max-width: 900px;
+  }
+}
+@media (max-width: 650px) {
+  .content__description {
+    max-width: 580px;
+  }
+}
+@media (max-width: 558px) {
+  .content__description {
+    max-width: 450px;
+  }
 }
 .content__description .content__text {
   font-size: 16px;
@@ -143,6 +267,12 @@ body {
   -moz-column-gap: 40px;
        column-gap: 40px;
 }
+@media (max-width: 558px) {
+  .skills-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 .main-description {
   text-align: center;
@@ -168,15 +298,46 @@ body {
   -moz-column-gap: 40px;
        column-gap: 40px;
 }
+@media (max-width: 834px) {
+  .goods {
+    -moz-column-gap: 25px;
+         column-gap: 25px;
+  }
+}
+@media (max-width: 767px) {
+  .goods {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+}
 .goods-info {
   background: white;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
-  width: 160px;
+  width: 250px;
   transition: transform 0.3s ease;
   margin-top: 15px;
+}
+@media (max-width: 1000px) {
+  .goods-info {
+    max-width: 200px;
+    width: 100%;
+    padding: 40px;
+  }
+}
+@media (max-width: 834px) {
+  .goods-info {
+    max-width: 150px;
+  }
+}
+@media (max-width: 767px) {
+  .goods-info {
+    display: flex;
+    max-width: 290px;
+    width: 100%;
+  }
 }
 .goods-info:hover {
   transform: translateY(-5px);
@@ -195,6 +356,15 @@ body {
   color: #27ae60;
   font-weight: bold;
   margin: 0;
+}
+
+@media (max-width: 767px) {
+  .info {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    row-gap: 10px;
+  }
 }
 
 .news {
@@ -284,17 +454,31 @@ body {
 }
 
 .experience__list {
-  display: flex; /* расположить элементы в линию */
-  flex-wrap: wrap; /* переносить, если не помещаются */
-  gap: 20px; /* промежутки между элементами, по желанию */
-  margin: 0 auto; /* центрировать по странице, если нужно */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-left: 0;
+  max-width: 900px;
   list-style: none;
 }
+@media (max-width: 834px) {
+  .experience__list {
+    flex-direction: column;
+  }
+}
 .experience__item {
-  flex: 1 1 30%; /* растягиваются, занимают равную ширину, по умолчанию примерно 30% */
-  min-width: 250px; /* минимальная ширина, чтобы не сжались слишком сильно */
+  flex: 1 1 30%;
+  max-width: 260px;
+  width: 100%;
   background-color: var(--section-color);
   border-radius: 12px;
+  margin-inline: 10px;
+}
+@media (max-width: 834px) {
+  .experience__item {
+    max-width: 450px;
+  }
 }
 .experience-card {
   display: flex;
@@ -309,6 +493,7 @@ body {
   text-align: center;
   padding-inline: 20px;
   margin-top: 0;
+  line-height: 1.6;
 }
 
 .practice {
@@ -319,12 +504,20 @@ body {
   padding-inline: 0;
   margin-top: 10px;
 }
+@media (max-width: 834px) {
+  .practice {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+}
 .practice-block {
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: var(--section-raduis);
   background-color: var(--section-color);
+  margin-inline: 10px;
 }
 .practice-block__link {
   color: var(--accent-color);

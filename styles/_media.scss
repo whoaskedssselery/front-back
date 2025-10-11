@@ -1,0 +1,65 @@
+$desktop: 1440px;
+$tablet: 1240px;
+$bug-fix: 834px;
+$thou: 1000px;
+$mobile: 767px;
+$mini: 650px;
+$fix: 558px;
+
+
+@mixin desktop {
+     @media (max-width: $desktop) {
+          @content;
+     }
+}
+
+
+@mixin tablet {
+     @media (max-width: $tablet) {
+          @content;
+     }
+}
+
+@mixin thou {
+     @media (max-width: $thou) {
+          @content;
+     }
+}
+
+@mixin bugfix {
+     @media (max-width: $bug-fix) {
+          @content;
+     }
+}
+
+@mixin mobile {
+     @media (max-width: $mobile) {
+          @content;
+     }
+}
+
+@mixin mini {
+     @media (max-width: $mini) {
+          @content;
+     }
+}
+
+@mixin fix {
+     @media (max-width: $fix) {
+          @content;
+     }
+}
+
+@mixin hover {
+     @media (hover: hover) {
+          &:hover {
+               @content;
+          }
+     }
+
+     @media (hover: none) {
+          &:active {
+               @content;
+          }
+     }
+}

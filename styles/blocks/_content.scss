@@ -1,14 +1,20 @@
 @use '../root';
+@use "../media";
 
 .content {
   padding: 20px;
-  max-width: 1024px;
-  width: 100%;
   margin: 10px auto;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+
+  @include media.mobile {
+    max-width: 500px;
+    width: 100%;
+    padding: 0;
+  }
 
    &__title {
       font-size: 32px;
@@ -47,12 +53,29 @@
     padding-block:15px;
     align-items: center;
 
+    max-width: 1024px;
+    width: 100%;
+
+    @include media.tablet {
+      max-width: 900px;
+    }
+
+    @include media.mini {
+      max-width: 580px; ;
+    }
+
+    @include media.fix {
+      max-width: 450px;
+    }
+
 
     .content__text {
       font-size: 16px;
       line-height: 1.6;
       color: var(--accent-color);
       margin: 0;;
+
+
     }
   }
 
@@ -93,6 +116,11 @@
    display: flex;
    justify-content: center;
    column-gap: 40px;
+
+   @include media.fix {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+   }
 }
 
 .main-description {

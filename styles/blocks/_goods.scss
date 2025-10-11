@@ -1,7 +1,18 @@
+@use "../media";
+
 .goods {
    display: flex;
    justify-content: center;
    column-gap: 40px;
+
+  @include media.bugfix {
+    column-gap: 25px;
+  }
+
+  @include media.mobile {
+    flex-direction: column;
+    row-gap: 20px;
+  }
 
   &-info {
     background: white;
@@ -9,10 +20,27 @@
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     text-align: center;
-    width: 160px;
+    width: 250px;
     transition: transform 0.3s ease;
 
     margin-top: 15px;
+
+    @include media.thou {
+      max-width: 200px;
+      width: 100%;
+      padding: 40px;
+    }
+
+    @include media.bugfix {
+      max-width: 150px;
+    }
+
+
+    @include media.mobile {
+      display: flex;
+      max-width: 290px;
+      width: 100%;
+    }
 
     &:hover {
       transform: translateY(-5px);
@@ -35,5 +63,14 @@
       font-weight: bold;
       margin: 0;
     }
+  }
+}
+
+.info {
+  @include media.mobile {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    row-gap: 10px;
   }
 }

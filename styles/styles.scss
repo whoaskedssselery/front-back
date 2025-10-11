@@ -1,9 +1,14 @@
-@use 'blocks/base';
-@use 'blocks/header';
-@use 'blocks/footer';
-@use 'blocks/content';
-@use 'blocks/goods';
-@use 'blocks/news';
-@use "blocks/contacts";
-@use "blocks/experience";
-@use "blocks/practice";
+@use "./media";
+
+@use './blocks/base';
+@use "./blocks/dialog";
+@use "./blocks/alert";
+@use "./blocks/button";
+@use './blocks/header';
+@use './blocks/footer';
+@use './blocks/content';
+@use './blocks/goods';
+@use './blocks/news';
+@use "./blocks/contacts";
+@use "./blocks/experience";
+@use "./blocks/practice";

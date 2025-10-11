@@ -1,9 +1,14 @@
 @use "../root";
+@use "../media";
 
 .header {
   background: linear-gradient(135deg, var(--accent-color) 0%, #34495e 100%);
   color: var(--color-light);
   padding: 20px 0;
+
+  @include media.mobile {
+    padding-block: 15px;
+  }
 
   &__menu {
     list-style: none;
@@ -11,7 +16,12 @@
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 40px;
+
+    @include media.mobile {
+      gap: 5px;
+      justify-content: space-between;
+    }
   }
 
   &__item {
@@ -21,7 +31,7 @@
   &__link {
     color: var(--color-light);
     text-decoration: none;
-    padding: 12px 25px;
+    padding: 12px;
     border-radius: 25px;
     transition: all 0.3s ease;
     font-weight: 500;
