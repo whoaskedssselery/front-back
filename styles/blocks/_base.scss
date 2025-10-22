@@ -8,3 +8,20 @@ body {
 
   height: 100%;
 }
+
+html[data-theme="dark"] {
+  --bg-color: #071029;
+  --surface: #0f1724;
+  --text-color: #e6eefc;
+  --muted: #94a3b8;
+  --accent-color: #60a5fa; 
+  --accent-contrast: #07203a;
+  --price-color: #34d399;
+  --discount-color: #fb7185;
+
+  --toggle-bg: rgba(255,255,255,0.04);
+  --toggle-border: rgba(255,255,255,0.06);
+  --toggle-color: var(--accent-color);
+  --toggle-active-bg: var(--accent-color);
+  --toggle-active-color: var(--accent-contrast);
+}

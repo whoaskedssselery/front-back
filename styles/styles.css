@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
@@ -6,6 +7,22 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+html[data-theme=dark] {
+  --bg-color: #071029;
+  --surface: #0f1724;
+  --text-color: #e6eefc;
+  --muted: #94a3b8;
+  --accent-color: #60a5fa;
+  --accent-contrast: #07203a;
+  --price-color: #34d399;
+  --discount-color: #fb7185;
+  --toggle-bg: rgba(255,255,255,0.04);
+  --toggle-border: rgba(255,255,255,0.06);
+  --toggle-color: var(--accent-color);
+  --toggle-active-bg: var(--accent-color);
+  --toggle-active-color: var(--accent-contrast);
 }
 
 :root {
@@ -115,7 +132,10 @@ select {
 .header {
   background: linear-gradient(135deg, var(--accent-color) 0%, #34495e 100%);
   color: var(--color-light);
-  padding: 20px 0;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 @media (max-width: 767px) {
   .header {
@@ -127,13 +147,16 @@ select {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
   gap: 40px;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
 }
 @media (max-width: 767px) {
   .header__menu {
-    gap: 5px;
-    justify-content: space-between;
+    gap: 8px;
+    justify-content: flex-start;
+    margin-left: 8px;
   }
 }
 .header__item {
@@ -148,8 +171,42 @@ select {
   font-weight: 500;
 }
 .header__link:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
+}
+.header__theme-toggle {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.header__theme-toggle:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.09);
+}
+.header__theme-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.12);
+}
+.header__theme-toggle[aria-pressed=true] {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--accent-color);
+  transform: translateY(-2px) scale(1.02);
+}
+@media (max-width: 767px) {
+  .header__theme-toggle {
+    margin-right: 8px;
+  }
 }
 
 .footer {
@@ -297,6 +354,8 @@ select {
   justify-content: center;
   -moz-column-gap: 40px;
        column-gap: 40px;
+  flex-wrap: wrap;
+  row-gap: 20px;
 }
 @media (max-width: 834px) {
   .goods {
@@ -311,59 +370,129 @@ select {
   }
 }
 .goods-info {
-  background: white;
+  background: var(--section-color);
+  color: var(--color-black);
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
   width: 250px;
-  transition: transform 0.3s ease;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.18s ease;
   margin-top: 15px;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 @media (max-width: 1000px) {
   .goods-info {
     max-width: 200px;
     width: 100%;
-    padding: 40px;
-  }
-}
-@media (max-width: 834px) {
-  .goods-info {
-    max-width: 150px;
+    padding: 16px;
   }
 }
 @media (max-width: 767px) {
   .goods-info {
     display: flex;
-    max-width: 290px;
+    max-width: 450px;
     width: 100%;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
+    padding: 14px;
+    justify-content: space-around;
   }
 }
 .goods-info:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.04);
 }
 .goods-info__image {
   border-radius: 8px;
   margin-bottom: 10px;
+  width: 160px;
+  height: 140px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 767px) {
+  .goods-info__image {
+    width: 150px;
+    height: 90px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
 }
 .goods-info__title {
   font-size: 18px;
   color: var(--accent-color);
   margin: 10px 0;
+  font-weight: 600;
+  padding: 0;
+  text-align: center;
+}
+.goods-info__meta {
+  margin: 6px 0;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  justify-content: center;
 }
 .goods-info__price {
   font-size: 16px;
   color: #27ae60;
   font-weight: bold;
-  margin: 0;
+}
+.goods-info__old-price {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
+  text-decoration: line-through;
+}
+.goods-info__actions {
+  margin-top: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+@media (max-width: 767px) {
+  .goods-info__actions {
+    margin-top: 0;
+    margin-left: auto;
+  }
+}
+.goods-info--selected {
+  border-color: var(--shadow-color) !important;
+  border-width: 2px;
+  box-shadow: 0 18px 44px rgba(90, 108, 214, 0.1);
+  transform: translateY(-4px);
+}
+.goods-info--discount::before {
+  content: "СКИДКА";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #ef4444;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+.goods-info--discount .goods-info__price {
+  color: #ef4444;
+}
+.goods-info--discount .goods-info__old-price {
+  color: rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 767px) {
-  .info {
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
-    row-gap: 10px;
+  .actions-button {
+    max-width: 80px;
   }
 }
 
@@ -453,6 +582,9 @@ select {
   row-gap: 5px;
 }
 
+.experience {
+  color: var(--accent-color);
+}
 .experience__list {
   display: flex;
   justify-content: center;
@@ -461,6 +593,7 @@ select {
   padding-left: 0;
   max-width: 900px;
   list-style: none;
+  color: inherit;
 }
 @media (max-width: 834px) {
   .experience__list {
@@ -503,6 +636,7 @@ select {
        column-gap: 20px;
   padding-inline: 0;
   margin-top: 10px;
+  color: var(--accent-color);
 }
 @media (max-width: 834px) {
   .practice {

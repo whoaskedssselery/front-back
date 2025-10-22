@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
    <title>SSSELERY | Практика</title>
-   <link rel="stylesheet" href="../css/styles.css">
+   <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
    <header class="header">
@@ -15,6 +15,10 @@
          <li class="header__item"><a href="./goods.html" class="header__link">Товары</a></li>
          <li class="header__item"><a href="./contacts.html" class="header__link">Контакты</a></li>
       </ul >
+
+      <button id="theme-toggle" class="header__theme-toggle" aria-pressed="false" title="Переключить тему">
+         🌙
+      </button>
    </header>
 
    <main class="content">
@@ -42,5 +46,7 @@
       <p class="footer__text">© 2025-2026 гг. Все права защищены</p>
       <p class="footer__text">Ссылки на материалы: <a href="https://github.com/astafiev-rustam/frontend-and-backend-development/tree/practice-1-8" class="footer__link">GitHub</a>, <a href="https://htmlacademy.ru/courses/299" class="footer__link">HTML Academy</a></p>
    </footer>
+
+   <script src="../js/theme.js" defer></script>
 </body>
 </html>
