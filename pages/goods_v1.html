@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>SSSELERY | Товары</title>
+   <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+   <header class="header">
+      <ul class="header__menu">
+         <li class="header__item"><a href="../index.html" class="header__link">Главная</a></li>
+         <li class="header__item"><a href="./news.html" class="header__link">Новости</a></li>
+         <li class="header__item"><a href="./practices.html" class="header__link">Практики</a></li>
+         <li class="header__item"><a href="./goods.html" class="header__link">Товары</a></li>
+         <li class="header__item"><a href="./contacts.html" class="header__link">Контакты</a></li>
+      </ul >
+
+      <button id="theme-toggle" class="header__theme-toggle" aria-pressed="false" title="Переключить тему">
+         🌙
+      </button>
+   </header>
+
+  <main class="content">
+    <h1 class="content__title">Каталог товаров</h1>
+
+    <div class="goods">
+      <!-- Базовая -->
+      <section class="goods-info">
+        <img src="../assets/good1.jpg" alt="Товар 1" class="goods-info__image" width="160" height="140" />
+        <h3 class="goods-info__title">Лирика</h3>
+        <p class="goods-info__meta"><span class="goods-info__price">50$</span></p>
+        <button class="actions-button button">Купить</button>
+      </section>
+
+      <section class="goods-info goods-info--discount">
+        <img src="../assets/good2.jpg" alt="Товар 2" class="goods-info__image" width="160" height="140" />
+        <h3 class="goods-info__title ">Итомед</h3>
+        <p class="goods-info__meta">
+          <span class="goods-info__price">45$</span>
+          <span class="goods-info__old-price">67$</span>
+        </p>
+        <button class="actions-button button">Купить</button>
+      </section>
+
+      <section class="goods-info goods-info">
+        <img src="../assets/good3.jpg" alt="Товар 3" class="goods-info__image" width="160" height="140" />
+        <h3 class="goods-info__title">Моносан</h3>
+        <p class="goods-info__meta"><span class="goods-info__price">13$</span></p>
+        <button class="actions-button button">Купить</button>
+      </section>
+    </div>
+  </main>
+
+   <footer class="footer">
+      <p class="footer__text">© 2025-2026 гг. Все права защищены</p>
+      <p class="footer__text">Ссылки на материалы: <a href="https://github.com/astafiev-rustam/frontend-and-backend-development/tree/practice-1-8" class="footer__link">GitHub</a>, <a href="https://htmlacademy.ru/courses/299" class="footer__link">HTML Academy</a></p>
+   </footer>
+
+   <script src="../js/theme.js" defer></script>
+   <script src="../js/goods.js" defer></script>
+</body>
+</html>

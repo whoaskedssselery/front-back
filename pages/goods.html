@@ -1,63 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>SSSELERY | Товары</title>
-   <link rel="stylesheet" href="../styles/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSSELERY | Товары (Bootstrap)</title>
+  <link rel="stylesheet" href="../bootstrap/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body>
-   <header class="header">
-      <ul class="header__menu">
-         <li class="header__item"><a href="../index.html" class="header__link">Главная</a></li>
-         <li class="header__item"><a href="./news.html" class="header__link">Новости</a></li>
-         <li class="header__item"><a href="./practices.html" class="header__link">Практики</a></li>
-         <li class="header__item"><a href="./goods.html" class="header__link">Товары</a></li>
-         <li class="header__item"><a href="./contacts.html" class="header__link">Контакты</a></li>
-      </ul >
 
-      <button id="theme-toggle" class="header__theme-toggle" aria-pressed="false" title="Переключить тему">
-         🌙
+<body class="bg-light">
+  <!-- Header -->
+  <header class="header navbar navbar-expand-lg navbar-dark bg-dark py-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="../index.html" class="navbar-brand fw-semibold text-white">SSSELERY</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
       </button>
-   </header>
 
-  <main class="content">
-    <h1 class="content__title">Каталог товаров</h1>
+      <nav class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav header__menu mb-2 mb-lg-0">
+          <li class="nav-item header__item"><a href="../index.html" class="nav-link header__link">Главная</a></li>
+          <li class="nav-item header__item"><a href="./news.html" class="nav-link header__link">Новости</a></li>
+          <li class="nav-item header__item"><a href="./practices.html" class="nav-link header__link">Практики</a></li>
+          <li class="nav-item header__item"><a href="./goods.html" class="nav-link header__link active">Товары</a></li>
+          <li class="nav-item header__item"><a href="./contacts.html" class="nav-link header__link">Контакты</a></li>
+        </ul>
+      </nav>
 
-    <div class="goods">
-      <!-- Базовая -->
-      <section class="goods-info">
-        <img src="../assets/good1.jpg" alt="Товар 1" class="goods-info__image" width="160" height="140" />
-        <h3 class="goods-info__title">Лирика</h3>
-        <p class="goods-info__meta"><span class="goods-info__price">50$</span></p>
-        <button class="actions-button button">Купить</button>
-      </section>
+      <button id="theme-toggle" class="header__theme-toggle ms-3" aria-pressed="false" title="Переключить тему">🌙</button>
+    </div>
+  </header>
 
-      <section class="goods-info goods-info--discount">
-        <img src="../assets/good2.jpg" alt="Товар 2" class="goods-info__image" width="160" height="140" />
-        <h3 class="goods-info__title ">Итомед</h3>
-        <p class="goods-info__meta">
-          <span class="goods-info__price">45$</span>
-          <span class="goods-info__old-price">67$</span>
-        </p>
-        <button class="actions-button button">Купить</button>
-      </section>
+  <!-- Main -->
+  <main class="content container my-5">
+    <h1 class="text-center mb-4 content__title"><i class="bi bi-cart4 me-2"></i>Каталог товаров</h1>
 
-      <section class="goods-info goods-info">
-        <img src="../assets/good3.jpg" alt="Товар 3" class="goods-info__image" width="160" height="140" />
-        <h3 class="goods-info__title">Моносан</h3>
-        <p class="goods-info__meta"><span class="goods-info__price">13$</span></p>
-        <button class="actions-button button">Купить</button>
-      </section>
+    <div class="row justify-content-center g-4 goods">
+      <!-- Товар 1 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card goods-info text-center p-3 shadow-sm h-200">
+          <img src="../assets/good1.jpg" alt="Товар 1" class="card-img-top rounded mb-3 goods-info__image" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="goods-info__title card-title">Лирика</h5>
+            <p class="goods-info__meta mb-3">
+              <span class="goods-info__price fw-bold text-success">50$</span>
+            </p>
+            <button class="btn btn-primary button actions-button">Купить</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Товар 2 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card goods-info goods-info--discount text-center p-3 shadow-sm h-200 position-relative">
+          <span class="discount-badge">СКИДКА</span>
+          <img src="../assets/good2.jpg" alt="Товар 2" class="card-img-top rounded mb-3 goods-info__image" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="goods-info__title card-title">Итомед</h5>
+            <p class="goods-info__meta mb-3">
+              <span class="goods-info__price text-danger fw-bold">45$</span>
+              <span class="goods-info__old-price text-muted text-decoration-line-through">67$</span>
+            </p>
+            <button class="btn btn-primary button actions-button">Купить</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Товар 3 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="card goods-info text-center p-3 shadow-sm h-200">
+          <img src="../assets/good3.jpg" alt="Товар 3" class="card-img-top rounded mb-3 goods-info__image" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="goods-info__title card-title">Моносан</h5>
+            <p class="goods-info__meta mb-3">
+              <span class="goods-info__price fw-bold text-success">13$</span>
+            </p>
+            <button class="btn btn-primary button actions-button">Купить</button>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
-   <footer class="footer">
-      <p class="footer__text">© 2025-2026 гг. Все права защищены</p>
-      <p class="footer__text">Ссылки на материалы: <a href="https://github.com/astafiev-rustam/frontend-and-backend-development/tree/practice-1-8" class="footer__link">GitHub</a>, <a href="https://htmlacademy.ru/courses/299" class="footer__link">HTML Academy</a></p>
-   </footer>
+  <!-- Footer -->
+  <footer class="footer bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-1">© 2025–2026 гг. Все права защищены</p>
+      <p class="mb-0">
+        Ссылки:
+        <a href="https://github.com/astafiev-rustam/frontend-and-backend-development/tree/practice-1-8" class="text-white text-decoration-underline">GitHub</a>,
+        <a href="https://htmlacademy.ru/courses/299" class="text-white text-decoration-underline">HTML Academy</a>
+      </p>
+    </div>
+  </footer>
 
-   <script src="../js/theme.js" defer></script>
-   <script src="../js/goods.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/theme.js" defer></script>
+  <script src="../js/goods.js" defer></script>
 </body>
 </html>

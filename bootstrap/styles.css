@@ -1,0 +1,165 @@
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css";
+
+/* === Цветовая схема === */
+:root {
+  --color-light: #fff;
+  --color-black: #000;
+  --shadow-color: #5a6cd6;
+  --section-color: #f8f9fa;
+  --accent-color: #2c3e50;
+  --section-radius: 12px;
+}
+
+html[data-theme="dark"] {
+  --bg-color: #071029;
+  --section-color: #0f1724;
+  --text-color: #e6eefc;
+  --muted: #94a3b8;
+  --accent-color: #60a5fa;
+}
+
+body {
+  background-color: var(--bg-color, #fff);
+  color: var(--text-color, #000);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === Заголовки === */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--accent-color);
+}
+
+h1 {
+  color: var(--accent-color) !important;
+}
+
+/* === Header === */
+.header {
+   padding-block: 18px !important;
+}
+
+.header.navbar {
+  background: linear-gradient(135deg, var(--accent-color) 0%, #34495e 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header__menu {
+   display: flex !important;
+   column-gap: 40px !important;
+}
+
+.nav-link {
+  color: #ffffffb3 !important;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  padding: 12px !important;;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+/* === Кнопка темы === */
+.header__theme-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--color-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 12px; /* ✅ небольшой отступ слева */
+}
+.header__theme-toggle:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.09);
+}
+.header__theme-toggle[aria-pressed="true"] {
+  background: rgba(255,255,255,0.18);
+  color: var(--accent-color);
+}
+
+/* === Карточки товаров === */
+.card.goods-info {
+  position: relative; /* ✅ теперь бейдж позиционируется относительно карточки */
+  background-color: var(--section-color);
+  color: var(--text-color, #000);
+  border-radius: var(--section-radius);
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card.goods-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Фото товара */
+.goods-info__image {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Названия и цены */
+.goods-info__title {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+.goods-info__price {
+  color: #27ae60;
+  font-weight: 700;
+}
+.goods-info__old-price {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* === Значок скидки === */
+.discount-badge {
+  position: absolute; /* ✅ теперь отображается поверх карточки */
+  top: 12px;
+  right: 12px; /* ✅ переместил справа, выглядит аккуратнее */
+  background: #ef4444;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+
+/* Кнопки */
+.btn, .button {
+  background-color: var(--shadow-color);
+  color: var(--color-light);
+  border: none;
+  border-radius: var(--section-radius);
+  transition: all 0.3s ease;
+}
+.btn:hover, .button:hover {
+  filter: brightness(0.95);
+  transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(135deg, var(--accent-color) 0%, #34495e 100%);
+  color: var(--color-light);
+  text-align: center;
+  margin-top: auto;
+}
+.footer a {
+  color: var(--color-light);
+  text-decoration: underline;
+}
+.footer a:hover {
+  opacity: 0.85;
+}
