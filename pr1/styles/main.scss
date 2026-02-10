@@ -1,0 +1,60 @@
+@use './helpers' as h;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+	font-family: 'Montserrat', sans-serif;
+	box-sizing: border-box;
+}
+
+.product-card {
+	--imageSize: #{h.rem(250)};
+	--cardRadius: #{h.rem(15)};
+	
+	@include h.abs-center;
+	@include h.fluid-text(14, 18);
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: h.rem(15);
+	
+	line-height: 1;
+	
+	max-width: h.rem(380);
+	border-radius: var(--cardRadius);
+	border: h.rem(2) solid #000000;
+	padding: h.rem(20) h.rem(45);
+	
+	&__image {
+		@include h.square(var(--imageSize));
+	}
+	
+	&__title {
+		text-align: center;
+		margin: 0;
+	}
+	
+	&__description {
+		text-align: center;
+		margin: 0;
+	}
+	
+	&__button {
+		padding: h.rem(10) h.rem(100);
+		background-color: skyblue;
+		
+		border-radius: h.rem(4);
+		border: none;
+		
+		font-weight: 600;
+		
+		cursor: pointer;
+		color: white;
+		
+		@include h.hover {
+			transform: scale(1.05);
+			transition-duration: 0.2s;
+		}
+	}
+}
