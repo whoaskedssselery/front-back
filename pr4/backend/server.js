@@ -5,7 +5,7 @@ const cors = require('cors')
 const port = 3000
 
 app.use(cors({
-  origin: 'http://localhost:5174',
+  origin: 'http://localhost:5173',
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }))

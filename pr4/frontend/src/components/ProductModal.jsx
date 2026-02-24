@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState, useEffect } from 'react'
 
 export default function ProductModal({ open, mode, initialProduct, onClose, onSubmit }) {
