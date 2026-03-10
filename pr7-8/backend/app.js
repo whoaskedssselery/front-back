@@ -232,7 +232,7 @@ app.get('/api/products', (req, res) => {
  *       401:
  *         description: Не авторизован
  */
-app.post('/api/products', (req, res) => {
+app.post('/api/products', authMiddleware, (req, res) => {
 	const { title, category, description, price, amount } = req.body
 	const newProduct = { id: nanoid(6), title, category, description, price, amount }
 	products.push(newProduct)
