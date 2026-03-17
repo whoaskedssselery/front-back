@@ -8,7 +8,6 @@ apiClient.interceptors.request.use(config => {
 	return config
 })
 
-// Response interceptor: при 401 пробуем обновить токен
 apiClient.interceptors.response.use(
 	response => response,
 	async error => {
@@ -16,12 +15,20 @@ apiClient.interceptors.response.use(
 		const refreshToken = localStorage.getItem('refreshToken')
 		const originalRequest = error.config
 		
+		if (originalRequest.url.includes('/auth/refresh')) {
+			localStorage.removeItem('accessToken')
+			localStorage.removeItem('refreshToken')
+			window.dispatchEvent(new Event('auth:logout'))
+			return Promise.reject(error)
+		}
+		
 		if (error.response?.status === 401 && !originalRequest._retry) {
 			originalRequest._retry = true
 			
 			if (!accessToken || !refreshToken) {
 				localStorage.removeItem('accessToken')
 				localStorage.removeItem('refreshToken')
+				window.dispatchEvent(new Event('auth:logout'))
 				return Promise.reject(error)
 			}
 			
@@ -38,6 +45,7 @@ apiClient.interceptors.response.use(
 			} catch (refreshError) {
 				localStorage.removeItem('accessToken')
 				localStorage.removeItem('refreshToken')
+				window.dispatchEvent(new Event('auth:logout'))
 				return Promise.reject(refreshError)
 			}
 		}

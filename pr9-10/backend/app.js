@@ -12,8 +12,8 @@ const port = 3000
 // Секреты и время жизни токенов
 const JWT_SECRET = 'access_secret'
 const REFRESH_SECRET = 'refresh_secret'
-const ACCESS_EXPIRES_IN = '15m'
-const REFRESH_EXPIRES_IN = '7d'
+const ACCESS_EXPIRES_IN = '6s'
+const REFRESH_EXPIRES_IN = '8s'
 
 // Хранилище refresh-токенов в памяти
 const refreshTokens = new Set()

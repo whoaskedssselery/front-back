@@ -24,6 +24,13 @@ export default function App() {
 		}
 	}, [])
 	
+	// Слушаем выброс по истечению refresh-токена
+	useEffect(() => {
+		const handler = () => setUser(null)
+		window.addEventListener('auth:logout', handler)
+		return () => window.removeEventListener('auth:logout', handler)
+	}, [])
+	
 	const handleLogin = async (formData) => {
 		const data = await api.login(formData)
 		localStorage.setItem('accessToken', data.accessToken)
