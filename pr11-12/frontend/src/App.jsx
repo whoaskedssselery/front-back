@@ -8,6 +8,7 @@ export default function App() {
 	const [user, setUser] = useState(null)
 	const [authChecked, setAuthChecked] = useState(false)
 	const [authModalOpen, setAuthModalOpen] = useState(false)
+	const [banned, setBanned] = useState(false)
 	
 	useEffect(() => {
 		const token = localStorage.getItem('accessToken')
@@ -24,14 +25,24 @@ export default function App() {
 		}
 	}, [])
 	
-	// Слушаем выброс по истечению refresh-токена
+	// выброс по истечению refresh-токена
 	useEffect(() => {
 		const handler = () => setUser(null)
 		window.addEventListener('auth:logout', handler)
 		return () => window.removeEventListener('auth:logout', handler)
 	}, [])
 	
-		// Смена роли real-time
+	// показываем экран бана когда пользователя заблокировали
+	useEffect(() => {
+		const handler = () => {
+			setBanned(true)
+			setUser(null)
+		}
+		window.addEventListener('auth:banned', handler)
+		return () => window.removeEventListener('auth:banned', handler)
+	}, [])
+	
+	// смена роли и проверка бана в реальном времени
 	useEffect(() => {
 		if (!user) return
 		const interval = setInterval(async () => {
@@ -48,6 +59,7 @@ export default function App() {
 		localStorage.setItem('accessToken', data.accessToken)
 		localStorage.setItem('refreshToken', data.refreshToken)
 		const me = await api.getMe()
+		setBanned(false)
 		setUser(me)
 	}
 	
@@ -63,6 +75,15 @@ export default function App() {
 	}
 	
 	if (!authChecked) return <div className="loading">Загрузка...</div>
+	
+	// экран бана — показывается вместо всего сайта
+	if (banned) return (
+		<div className="loading" style={{ flexDirection: 'column', gap: 16 }}>
+			<span style={{ fontSize: 64 }}>🚫</span>
+			<span style={{ fontSize: 20, fontWeight: 700 }}>Ваш аккаунт заблокирован</span>
+			<span style={{ opacity: 0.5, fontSize: 14 }}>Обратитесь к администратору</span>
+		</div>
+	)
 	
 	return (
 		<div className="App">

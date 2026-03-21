@@ -107,7 +107,7 @@ export default function ProductsPage({ user, onLogout, onAuthClick }) {
 					)
 				)}
 				
-				{tab === 'users' && role === 'admin' && <UsersPage />}
+				{tab === 'users' && role === 'admin' && <UsersPage currentUserId={user.id} />}
 			</main>
 			
 			<ProductModal

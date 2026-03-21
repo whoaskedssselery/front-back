@@ -22,6 +22,14 @@ apiClient.interceptors.response.use(
 			return Promise.reject(error)
 		}
 		
+		// если пользователь заблокирован — выбрасываем с баном
+		if (error.response?.status === 403 && error.response?.data?.error === 'User is blocked') {
+			localStorage.removeItem('accessToken')
+			localStorage.removeItem('refreshToken')
+			window.dispatchEvent(new Event('auth:banned'))
+			return Promise.reject(error)
+		}
+		
 		if (error.response?.status === 401 && !originalRequest._retry) {
 			originalRequest._retry = true
 			
@@ -89,7 +97,6 @@ export const api = {
 		return response.data
 	},
 	
-	// методы для управления пользователями — только для админа
 	async getUsers() {
 		const response = await apiClient.get('/users')
 		return response.data

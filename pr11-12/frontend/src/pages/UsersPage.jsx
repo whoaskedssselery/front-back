@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { api } from '../api'
 
-export default function UsersPage() {
+export default function UsersPage({ currentUserId }) {
 	const [users, setUsers] = useState([])
 	const [loading, setLoading] = useState(true)
 	
@@ -51,9 +51,9 @@ export default function UsersPage() {
 						</p>
 					</div>
 					<div className="item-right-side">
-						{!u.blocked && (
+						{/* скрываем панель управления для самого админа */}
+						{!u.blocked && u.id !== currentUserId && (
 							<div className="item-actions">
-								{/* смена роли */}
 								<select
 									value={u.role}
 									onChange={e => handleRoleChange(u.id, e.target.value)}
@@ -61,7 +61,6 @@ export default function UsersPage() {
 								>
 									<option value="user">user</option>
 									<option value="seller">seller</option>
-									<option value="admin">admin</option>
 								</select>
 								<button className="btn-danger" onClick={() => handleBlock(u.id)}>Заблокировать</button>
 							</div>

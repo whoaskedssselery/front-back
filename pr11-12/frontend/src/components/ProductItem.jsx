@@ -1,6 +1,6 @@
 import React from 'react'
 
-// canEdit — seller и admin, canDelete — только admin
+// canEdit, canDelete — seller и admin
 export default function ProductItem({ product, onEdit, onDelete, canEdit, canDelete }) {
 	return (
 		<div className="item">

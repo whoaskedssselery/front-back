@@ -93,6 +93,8 @@ function authMiddleware(req, res, next) {
 		const payload = jwt.verify(token, JWT_SECRET)
 		const user = users.find(u => u.id === payload.sub)
 		if (!user) return res.status(401).json({ error: 'User not found' })
+		// если пользователь заблокирован — отказываем
+		if (user.blocked) return res.status(403).json({ error: 'User is blocked' })
 		req.user = { ...payload, role: user.role }
 		next()
 	} catch (err) {
@@ -258,7 +260,7 @@ app.put('/api/products/:id', authMiddleware, roleMiddleware(['seller', 'admin'])
 })
 
 // удалять товары может только админ
-app.delete('/api/products/:id', authMiddleware, roleMiddleware(['admin']), (req, res) => {
+app.delete('/api/products/:id', authMiddleware, roleMiddleware(['seller', 'admin']), (req, res) => {
 	const exists = products.some(p => p.id === req.params.id)
 	if (!exists) return res.status(404).json({ error: 'Товар не найден' })
 	products = products.filter(p => p.id !== req.params.id)
