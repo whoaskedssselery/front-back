@@ -10,13 +10,13 @@ export default function ProductsPage({ user, onLogout, onAuthClick }) {
 	const [modalOpen, setModalOpen] = useState(false)
 	const [modalMode, setModalMode] = useState('create')
 	const [editingProduct, setEditingProduct] = useState(null)
-	const [tab, setTab] = useState('products') // переключение между товарами и пользователями
+	const [tab, setTab] = useState('products')
 	
 	const role = user?.role
 	
-	// seller и admin могут создавать, редактировать и удалять товары
 	const canEdit = role === 'seller' || role === 'admin'
-	const canDelete = role === 'seller' || role === 'admin'
+	// удаление только для админа
+	const canDelete = role === 'admin'
 	
 	const loadProducts = async () => {
 		try {
@@ -68,7 +68,6 @@ export default function ProductsPage({ user, onLogout, onAuthClick }) {
 					{user ? (
 						<>
 							<span className="user-name">{user.first_name} {user.last_name} ({user.role})</span>
-							{/* вкладка пользователей только для админа */}
 							{role === 'admin' && (
 								<>
 									<button onClick={() => setTab('products')} className={tab === 'products' ? 'btn-primary' : ''}>Товары</button>

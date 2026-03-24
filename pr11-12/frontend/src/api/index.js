@@ -105,6 +105,10 @@ export const api = {
 		const response = await apiClient.put(`/users/${id}`, data)
 		return response.data
 	},
+	async unblockUser(id) {
+		const response = await apiClient.put(`/users/${id}`, { blocked: false })
+		return response.data
+	},
 	async blockUser(id) {
 		const response = await apiClient.delete(`/users/${id}`)
 		return response.data

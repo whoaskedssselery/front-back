@@ -4,6 +4,9 @@ import { api } from '../api'
 export default function UsersPage({ currentUserId }) {
 	const [users, setUsers] = useState([])
 	const [loading, setLoading] = useState(true)
+	const [editingUser, setEditingUser] = useState(null)
+	const [editFirst, setEditFirst] = useState('')
+	const [editLast, setEditLast] = useState('')
 	
 	const loadUsers = async () => {
 		try {
@@ -37,37 +40,89 @@ export default function UsersPage({ currentUserId }) {
 		}
 	}
 	
+	// разблокировка через PUT — просто снимаем флаг blocked
+	const handleUnblock = async (id) => {
+		try {
+			await api.unblockUser(id)
+			setUsers(prev => prev.map(u => u.id === id ? { ...u, blocked: false } : u))
+		} catch (err) {
+			alert('Ошибка разблокировки')
+		}
+	}
+	
+	const openEdit = (u) => {
+		setEditingUser(u)
+		setEditFirst(u.first_name)
+		setEditLast(u.last_name)
+	}
+	
+	const handleEditSubmit = async () => {
+		try {
+			const updated = await api.updateUser(editingUser.id, { first_name: editFirst, last_name: editLast })
+			setUsers(prev => prev.map(u => u.id === editingUser.id ? { ...u, first_name: updated.first_name, last_name: updated.last_name } : u))
+			setEditingUser(null)
+		} catch (err) {
+			alert('Ошибка редактирования')
+		}
+	}
+	
 	if (loading) return <div>Загрузка...</div>
 	
 	return (
-		<div className="list">
-			{users.map(u => (
-				<div className="item" key={u.id}>
-					<div className="item-inner">
-						<p className="item-name">{u.first_name} {u.last_name}</p>
-						<p className="item-category">{u.email}</p>
-						<p className="item-amount">
-							{u.blocked ? '🔴 Заблокирован' : '🟢 Активен'}
-						</p>
+		<>
+			<div className="list">
+				{users.map(u => (
+					<div className="item" key={u.id}>
+						<div className="item-inner">
+							<p className="item-name">{u.first_name} {u.last_name}</p>
+							<p className="item-category">{u.email}</p>
+							<p className="item-amount">
+								{u.blocked ? '🔴 Заблокирован' : '🟢 Активен'} · {u.role}
+							</p>
+						</div>
+						<div className="item-right-side">
+							{u.id !== currentUserId && (
+								<div className="item-actions">
+									{!u.blocked && (
+										<>
+											<select
+												value={u.role}
+												onChange={e => handleRoleChange(u.id, e.target.value)}
+												style={{ padding: '8px', borderRadius: '10px', background: '#0f1526', color: '#e7eaf3', border: '1px solid rgba(255,255,255,0.14)' }}
+											>
+												<option value="user">user</option>
+												<option value="seller">seller</option>
+											</select>
+											<button onClick={() => openEdit(u)}>Редактировать</button>
+											<button className="btn-danger" onClick={() => handleBlock(u.id)}>Заблокировать</button>
+										</>
+									)}
+									{u.blocked && (
+										<button className="btn-primary" onClick={() => handleUnblock(u.id)}>Разблокировать</button>
+									)}
+								</div>
+							)}
+						</div>
 					</div>
-					<div className="item-right-side">
-						{/* скрываем панель управления для самого админа */}
-						{!u.blocked && u.id !== currentUserId && (
-							<div className="item-actions">
-								<select
-									value={u.role}
-									onChange={e => handleRoleChange(u.id, e.target.value)}
-									style={{ padding: '8px', borderRadius: '10px', background: '#0f1526', color: '#e7eaf3', border: '1px solid rgba(255,255,255,0.14)' }}
-								>
-									<option value="user">user</option>
-									<option value="seller">seller</option>
-								</select>
-								<button className="btn-danger" onClick={() => handleBlock(u.id)}>Заблокировать</button>
+				))}
+			</div>
+			
+			{/* модалка редактирования пользователя */}
+			{editingUser && (
+				<div className="backdrop" onMouseDown={() => setEditingUser(null)}>
+					<div className="modal" onMouseDown={e => e.stopPropagation()}>
+						<h2>Редактировать пользователя</h2>
+						<form onSubmit={e => { e.preventDefault(); handleEditSubmit() }}>
+							<input placeholder="Имя" value={editFirst} onChange={e => setEditFirst(e.target.value)} />
+							<input placeholder="Фамилия" value={editLast} onChange={e => setEditLast(e.target.value)} />
+							<div className="modal-footer">
+								<button type="button" onClick={() => setEditingUser(null)}>Отмена</button>
+								<button type="submit" className="btn-primary">Сохранить</button>
 							</div>
-						)}
+						</form>
 					</div>
 				</div>
-			))}
-		</div>
+			)}
+		</>
 	)
 }

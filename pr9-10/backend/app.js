@@ -12,8 +12,8 @@ const port = 3000
 // Секреты и время жизни токенов
 const JWT_SECRET = 'access_secret'
 const REFRESH_SECRET = 'refresh_secret'
-const ACCESS_EXPIRES_IN = '6s'
-const REFRESH_EXPIRES_IN = '8s'
+const ACCESS_EXPIRES_IN = '15m'
+const REFRESH_EXPIRES_IN = '7d'
 
 // Хранилище refresh-токенов в памяти
 const refreshTokens = new Set()
@@ -307,8 +307,8 @@ app.get('/api/products', (req, res) => {
  *         description: Не авторизован
  */
 app.post('/api/products', authMiddleware, (req, res) => {
-	const { title, category, description, price, amount } = req.body
-	const newProduct = { id: nanoid(6), title, category, description, price, amount }
+	const { title, category, description, price, amount, image } = req.body
+	const newProduct = { id: nanoid(6), title, category, description, price, amount, image }
 	products.push(newProduct)
 	res.status(201).json(newProduct)
 })
@@ -383,12 +383,13 @@ app.get('/api/products/:id', authMiddleware, (req, res) => {
 app.put('/api/products/:id', authMiddleware, (req, res) => {
 	const product = products.find(p => p.id === req.params.id)
 	if (!product) return res.status(404).json({ error: 'Товар не найден' })
-	const { title, category, description, price, amount } = req.body
+	const { title, category, description, price, amount, image } = req.body
 	if (title !== undefined) product.title = title
 	if (category !== undefined) product.category = category
 	if (description !== undefined) product.description = description
 	if (price !== undefined) product.price = price
 	if (amount !== undefined) product.amount = amount
+	if (image !== undefined) product.image = image
 	res.json(product)
 })
 

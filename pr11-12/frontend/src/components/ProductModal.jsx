@@ -6,6 +6,7 @@ export default function ProductModal({ open, mode, initialProduct, onClose, onSu
 	const [description, setDescription] = useState('')
 	const [price, setPrice] = useState('')
 	const [amount, setAmount] = useState('')
+	const [image, setImage] = useState('')
 	
 	useEffect(() => {
 		if (!open) return
@@ -14,6 +15,7 @@ export default function ProductModal({ open, mode, initialProduct, onClose, onSu
 		setDescription(initialProduct?.description ?? '')
 		setPrice(initialProduct?.price ?? '')
 		setAmount(initialProduct?.amount ?? '')
+		setImage(initialProduct?.image ?? '')
 	}, [open, initialProduct])
 	
 	if (!open) return null
@@ -25,7 +27,7 @@ export default function ProductModal({ open, mode, initialProduct, onClose, onSu
 		if (!description.trim()) return alert('Введите описание')
 		if (!price || Number(price) <= 0) return alert('Введите корректную цену')
 		if (amount === '' || Number(amount) < 0) return alert('Введите корректное количество')
-		onSubmit({ id: initialProduct?.id, title, category, description, price: Number(price), amount: Number(amount) })
+		onSubmit({ id: initialProduct?.id, title, category, description, price: Number(price), amount: Number(amount), image })
 	}
 	
 	return (
@@ -38,6 +40,8 @@ export default function ProductModal({ open, mode, initialProduct, onClose, onSu
 					<input placeholder="Описание" value={description} onChange={e => setDescription(e.target.value)} />
 					<input placeholder="Цена" value={price} onChange={e => setPrice(e.target.value)} />
 					<input placeholder="Количество" value={amount} onChange={e => setAmount(e.target.value)} />
+					{/* необязательное поле — если пусто, будет дефолтная картинка */}
+					<input placeholder="Ссылка на картинку (необязательно)" value={image} onChange={e => setImage(e.target.value)} />
 					<div className="modal-footer">
 						<button type="button" onClick={onClose}>Отмена</button>
 						<button type="submit" className="btn-primary">{mode === 'create' ? 'Создать' : 'Сохранить'}</button>

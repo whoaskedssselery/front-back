@@ -1,14 +1,21 @@
 import React from 'react'
 
-// canEdit, canDelete — seller и admin
 export default function ProductItem({ product, onEdit, onDelete, canEdit, canDelete }) {
 	return (
 		<div className="item">
-			<div className="item-inner">
-				<p className="item-name">{product.title}</p>
-				<p className="item-category">{product.category}</p>
-				<p className="item-description">{product.description}</p>
-				<p className="item-amount">На складе: {product.amount} шт.</p>
+			<div className="item-left">
+				<img
+					src={product.image || '/product-placeholder.jpg'}
+					alt={product.title}
+					className="item-image"
+					onError={e => { e.target.src = '/product-placeholder.jpg' }}
+				/>
+				<div className="item-inner">
+					<p className="item-name">{product.title}</p>
+					<p className="item-category">{product.category}</p>
+					<p className="item-description">{product.description}</p>
+					<p className="item-amount">На складе: {product.amount} шт.</p>
+				</div>
 			</div>
 			<div className="item-right-side">
 				{(canEdit || canDelete) && (
